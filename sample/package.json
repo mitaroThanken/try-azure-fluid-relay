@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "update-browserslist-db": "npx update-browserslist-db@latest",
-    "dev": "vite",
+    "dev": "concurrently --raw npm:dev:client npm:dev:local-service --kill-others",
+    "dev:client": "vite",
+    "dev:local-service": "npx @fluidframework/azure-local-service@latest",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
