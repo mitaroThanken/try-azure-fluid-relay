@@ -1,0 +1,42 @@
+services:
+  haproxy:
+    image: haproxy-with-minica/haproxy
+    build:
+      context: ./haproxy
+      target: haproxy
+      args:
+        - VHOST_FQDN=${VHOST_NAME:-test}.test
+    networks:
+      default:
+        aliases:
+          - ${VHOST_NAME:-test}.test
+    ports:
+      - target: 80
+        host_ip: 127.0.0.1
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        host_ip: 127.0.0.1
+        published: 443
+        protocol: tcp
+        mode: host
+    depends_on:
+      - sample
+      - sample2
+  sample:
+    image: haproxy-with-minica/sample
+    build:
+      context: ./sample/.devcontainer
+      args:
+        - VARIANT=18-bullseye
+    volumes:
+      - .:/workspaces:cached
+    environment:
+      - VHOST_FQDN=${VHOST_NAME:-test}.test
+    command: /bin/sh -c "while sleep 1000; do :; done"
+  sample2:
+    image: haproxy-with-minica/sample2
+    build:
+      context: ./sample2
+    command: /bin/sh -c "while sleep 1000; do :; done"

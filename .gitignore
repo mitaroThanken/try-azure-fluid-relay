@@ -1,0 +1,4 @@
+# certs created by minica
+certs/**/*
+!certs/Dockerfile
+!certs/.dockerignore
