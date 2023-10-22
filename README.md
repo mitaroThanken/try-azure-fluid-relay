@@ -1,4 +1,4 @@
-HAProxy with jsha/minica
+Try Azure Fluid Relay
 ===
 
 Modify virtual host's name
@@ -10,7 +10,7 @@ Make certs
 ---
 
 ```shell
-docker buildx build --build-arg $(tail -n1 .env) -t haproxy-with-minica/certs certs/
+docker buildx build --build-arg $(tail -n1 .env) -t try-azure-fluid-relay/certs certs/
 ```
 
 Export certs
@@ -21,7 +21,7 @@ docker compose up -d --build
 ```
 
 ```shell
-docker container cp haproxy-with-minica-haproxy-1:/usr/local/etc/haproxy/certs - | tar xv
+docker container cp try-azure-fluid-relay-haproxy-1:/usr/local/etc/haproxy/certs - | tar xv
 ```
 
 ```shell

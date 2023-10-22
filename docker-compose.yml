@@ -1,6 +1,6 @@
 services:
   haproxy:
-    image: haproxy-with-minica/haproxy
+    image: try-azure-fluid-relay/haproxy
     build:
       context: ./haproxy
       target: haproxy
@@ -25,7 +25,7 @@ services:
       - sample
       - sample2
   sample:
-    image: haproxy-with-minica/sample
+    image: try-azure-fluid-relay/sample
     build:
       context: ./sample/.devcontainer
       args:
@@ -36,7 +36,7 @@ services:
       - VHOST_FQDN=${VHOST_NAME:-test}.test
     command: /bin/sh -c "while sleep 1000; do :; done"
   sample2:
-    image: haproxy-with-minica/sample2
+    image: try-azure-fluid-relay/sample2
     build:
       context: ./sample2
     command: /bin/sh -c "while sleep 1000; do :; done"

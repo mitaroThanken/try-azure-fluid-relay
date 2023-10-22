@@ -1,4 +1,4 @@
-FROM haproxy-with-minica/certs:latest as certs
+FROM try-azure-fluid-relay/certs:latest as certs
 FROM debian:bookworm
 
 RUN apt-get update \
